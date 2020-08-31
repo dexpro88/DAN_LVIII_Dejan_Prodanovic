@@ -5,8 +5,130 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DAN_LVIII_Dejan_Prodanovic"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow"
+        Height="600"
+        Width="500">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background"
+                    Value="White" />
+            <Setter Property="BorderThickness"
+                    Value="0.5" />
+            <Setter Property="FontSize"
+                    Value="70" />
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="Container">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         
+        <Button Command="{Binding ClickOnField}"
+                CommandParameter="{Binding ElementName=Button0_0}"
+                Content="{Binding Button0_0}"
+                x:Name="Button0_0"
+                Grid.Column="0"
+                Grid.Row="0" />
+        <Button  Command="{Binding ClickOnField}"
+                 CommandParameter="{Binding ElementName=Button0_1}"
+                 Content="{Binding Button0_1}"
+                 x:Name="Button0_1"
+                 Grid.Column="1"
+                 Grid.Row="0" />
+        <Button  Command="{Binding ClickOnField}"
+                 Content="{Binding Button0_2}"
+                 CommandParameter="{Binding ElementName=Button0_2}"
+                 x:Name="Button0_2"
+                 Grid.Column="2"
+                 Grid.Row="0" />
+        <Button  Command="{Binding ClickOnField}"
+                 Content="{Binding Button1_0}"
+                 CommandParameter="{Binding ElementName=Button1_0}"
+                 x:Name="Button1_0"
+                 Grid.Column="0"
+                 Grid.Row="1" />
+        <Button  Command="{Binding ClickOnField}"
+                 Content="{Binding Button1_1}"
+                 CommandParameter="{Binding ElementName=Button1_1}"
+                 x:Name="Button1_1"
+                 Grid.Column="1"
+                 Grid.Row="1" />
+        <Button  Command="{Binding ClickOnField}"
+                 Content="{Binding Button1_2}"
+                 CommandParameter="{Binding ElementName=Button1_2}"
+                 x:Name="Button1_2"
+                 Grid.Column="2"
+                 Grid.Row="1" />
+        <Button  Command="{Binding ClickOnField}"
+                 Content="{Binding Button2_0}"
+                 CommandParameter="{Binding ElementName=Button2_0}"
+                 x:Name="Button2_0"
+                 Grid.Column="0"
+                 Grid.Row="2" />
+        <Button  Command="{Binding ClickOnField}"
+                 Content="{Binding Button2_1}"
+                 CommandParameter="{Binding ElementName=Button2_1}"
+                 x:Name="Button2_1"
+                 Grid.Column="1"
+                 Grid.Row="2" />
+        <Button  Command="{Binding ClickOnField}"
+                 Content="{Binding Button2_2}"
+                 CommandParameter="{Binding ElementName=Button2_2}"
+                 x:Name="Button2_2"
+                 Grid.Column="2"
+                 Grid.Row="2" />
+        <Button Grid.Column="0"
+                Grid.Row="3"
+                Background="BlueViolet"
+                Height="30"
+                Width="120"
+                BorderThickness="0"
+                Foreground="White"
+                FontSize="16"
+                Command="{Binding ChooseTeam}">New game</Button>
+        <Button Grid.Column="1"
+                Grid.Row="3"
+                Background="Red"
+                Height="30"
+                Width="120"
+                BorderThickness="0"
+                Foreground="White"
+                FontSize="16"
+                Command="{Binding Close}">Close</Button>
+        <Label FontSize="73"
+               Foreground="Red"
+               Grid.Row="1"
+               Grid.Column="0"
+               Margin="20 0 20 0"
+               Visibility="{Binding YouWon, UpdateSourceTrigger=PropertyChanged}">You</Label>
+        <Label FontSize="73"
+               Foreground="Red"
+               Grid.Row="1"
+               Grid.Column="1"
+               Visibility="{Binding YouWon, UpdateSourceTrigger=PropertyChanged}">won!</Label>
+        <Label FontSize="73"
+               Foreground="Red"
+               Grid.Row="1"
+               Grid.Column="0"
+               Margin="20 0 0 0"
+               Visibility="{Binding ComputerWon, UpdateSourceTrigger=PropertyChanged}">You</Label>
+        <Label FontSize="73"
+               Foreground="Red"
+               Grid.Row="1"
+               Grid.Column="1"
+               Visibility="{Binding ComputerWon, UpdateSourceTrigger=PropertyChanged}">lost!</Label>
+        <Label FontSize="83"
+               Foreground="Red"
+               Grid.Row="1"
+               Grid.Column="1"
+               Visibility="{Binding TieResult, UpdateSourceTrigger=PropertyChanged}">Tie!</Label>
     </Grid>
 </Window>
