@@ -246,6 +246,10 @@ namespace DAN_LVIII_Dejan_Prodanovic.ViewModel
                 return chooseTeam;
             }
         }
+
+        /// <summary>
+        /// method that chooses x or o for player
+        /// </summary>
         private void ChooseTeamExecute()
         {
             try
@@ -263,6 +267,8 @@ namespace DAN_LVIII_Dejan_Prodanovic.ViewModel
                     SelectedTeam = "O";
                 }
 
+                //when ever we choose team we reset all data
+                //game starts from beginning
                 Button0_0 = "";
                 Button0_1 = "";
                 Button0_2 = "";
@@ -277,6 +283,8 @@ namespace DAN_LVIII_Dejan_Prodanovic.ViewModel
 
                 gameStarted = true;
                 gameEnded = false;
+
+                //counts moves so we know if the game ends
                 yourMoveCounter = 0;
                 gameMoveCounter = 0;
                 YouWon = Visibility.Hidden;
@@ -323,18 +331,28 @@ namespace DAN_LVIII_Dejan_Prodanovic.ViewModel
                 {
                     if (!fields.ContainsKey(1))
                     {
+                        //we increse move counters
                         yourMoveCounter++;
                         gameMoveCounter++;
+
+                        //we write on table selected character ( x or o)
                         Button0_0 = SelectedTeam;
+
+                        //adds team to dictionary , later we check if field is empty or not
                         fields.Add(1, SelectedTeam);
+
+                        // we check if the game is over and if we have a winner
                         CheckForWinner();
                         if (gameEnded)
                         {
                             return;
                         }
+
+                        //performs move for computer
                         if (yourMoveCounter <= 4)
                         {
                             AutoInput(button);
+                            //we check if we have a winner
                             CheckForWinner();
                             if (gameEnded)
                             {
@@ -562,7 +580,7 @@ namespace DAN_LVIII_Dejan_Prodanovic.ViewModel
 
                 }
 
-
+                //we check if game ended with tie result
                 if (gameMoveCounter == 9 && !gameEnded)
                 {
                     TieResult = Visibility.Visible;
@@ -582,6 +600,12 @@ namespace DAN_LVIII_Dejan_Prodanovic.ViewModel
             return true;
         }
 
+        /// <summary>
+        /// recursive function that performs move for computer
+        /// we try to write on random index and if it is taken 
+        /// function will be called again
+        /// </summary>
+        /// <param name="obj"></param>
         private void AutoInput(object obj)
         {
             int index = rnd.Next(1, 10);
@@ -590,6 +614,7 @@ namespace DAN_LVIII_Dejan_Prodanovic.ViewModel
             if (!fields.ContainsKey(index))
             {
                 string input;
+                //we choose sign for computer ( it is oposite from player's sign)
                 if (SelectedTeam.Equals("X"))
                 {
                     input = "O";
@@ -599,6 +624,8 @@ namespace DAN_LVIII_Dejan_Prodanovic.ViewModel
                 {
                     input = "X";
                 }
+
+                //we try to write on random index
                 if (index == 1)
                 {
                     Button0_0 = input;
